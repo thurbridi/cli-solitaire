@@ -284,7 +284,7 @@ def parse_move(deck, tableau, stock, waste, foundations, move):
             move_stack(n, tableau[from_], tableau[to], deck)
         return deck, tableau, stock, waste, foundations
 
-    match = re.match(r"^from (\d|w) to (\d|f)", move)
+    match = re.match(r"^from (\d|w|f\d) to (\d|f)", move)
     if match:
         from_ = match.group(1)
         to = match.group(2)
@@ -315,12 +315,22 @@ def parse_move(deck, tableau, stock, waste, foundations, move):
                 )
             return deck, tableau, stock, waste, foundations
 
+        # foudation to tableau
+        for i, foundation_code in enumerate(["f1", "f2", "f3", "f4"]):
+            if from_ == foundation_code:
+                to = int(to) - 1
+                suit = suits[i]
+                if can_move_stack(1, foundations[suit], tableau[to]):
+                    move_stack(1, foundations[suit], tableau[to], deck)
+                return deck, tableau, stock, waste, foundations
+
         # tableau to tableau
         from_ = int(from_) - 1
         to = int(to) - 1
         if can_move_stack(1, tableau[from_], tableau[to]):
             move_stack(1, tableau[from_], tableau[to], deck)
         return deck, tableau, stock, waste, foundations
+
     return deck, tableau, stock, waste, foundations
 
 
