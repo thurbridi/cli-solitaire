@@ -257,6 +257,9 @@ def take_from_stock(stock, waste, n=1):
 def parse_move(deck, tableau, stock, waste, foundations, move):
     # TODO: Move from foundation to tableau
     move = move.lower()
+    if move == "exit":
+        quit(0)
+
     if move == "reset":
         deck, tableau, stock, waste, foundations = reset_game()
         return deck, tableau, stock, waste, foundations
