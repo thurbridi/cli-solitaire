@@ -1,0 +1,14 @@
+[project]
+name = "solitaire"
+version = "0.1.0"
+description = "A cli solitaire game."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+cli-solitaire = "solitaire:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

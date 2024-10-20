@@ -385,7 +385,9 @@ def game_loop(deck, tableau, stock, waste, foundations):
             deck, tableau, stock, waste, foundations, move
         )
 
-
-if __name__ == "__main__":
+def main():
     deck, tableau, stock, waste, foundations = reset_game()
     game_loop(deck, tableau, stock, waste, foundations)
+
+if __name__ == "__main__":
+    main()
